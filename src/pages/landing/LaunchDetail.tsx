@@ -6,6 +6,7 @@ import {
   Container, Image, Anchor, Stack, Box, Paper, Grid,
   Timeline, ThemeIcon, RingProgress, Avatar
 } from '@mantine/core';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 //declare the types 
 type Failure = {
@@ -55,13 +56,13 @@ type Rocket = {
 };
 
 const fetchLaunchById = async (id: string): Promise<Launch> => {
-  const res = await fetch(`https://api.spacexdata.com/v4/launches/${id}`);
+  const res = await fetch(`${BASE_URL}/launches/${id}`);
   if (!res.ok) throw new Error('Failed to fetch launch');
   return res.json();
 };
 
 const fetchRocketById = async (id: string): Promise<Rocket> => {
-  const res = await fetch(`https://api.spacexdata.com/v4/rockets/${id}`);
+  const res = await fetch(`${BASE_URL}/rockets/${id}`);
   if (!res.ok) throw new Error('Failed to fetch rocket');
   return res.json();
 };
